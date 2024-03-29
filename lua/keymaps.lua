@@ -2,8 +2,51 @@
 --  See `:help vim.keymap.set()`
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
+--
+--
+local function nmap(lhs, rhs, opt)
+  opt = opt or {}
+  vim.keymap.set('n', lhs, rhs, opt)
+end
+
+local function xmap(lhs, rhs, opt)
+  opt = opt or {}
+  vim.keymap.set('x', lhs, rhs, opt)
+end
+
+local function vmap(lhs, rhs, opt)
+  opt = opt or {}
+  vim.keymap.set('v', lhs, rhs, opt)
+end
+
+local function imap(lhs, rhs, opt)
+  opt = opt or {}
+  vim.keymap.set('i', lhs, rhs, opt)
+end
+
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Easily void things you're visually pasting over
+xmap('<leader>p', '"_dP', {})
+-- Keep screen centered when moving around
+nmap('n', 'nzzzv', {})
+nmap('N', 'Nzzzv', {})
+nmap('J', 'mzJ`z', {})
+
+-- Move things around easily by holding alt
+-- vmap('<M-j>', ":m '>+1<CR>gv=gv")
+-- vmap('<M-k>', ":m '<-2<CR>gv=gv")
+-- imap('<M-j>', '<esc>:m .+1<CR>==')
+-- imap('<M-k>', '<esc>:m .-2<CR>==')
+-- nmap('<M-j>', ':m .+1<CR>==')
+-- nmap('<M-k>', ':m .-2<CR>==')
+
+-- Make visual indentation not stupid
+vmap('<', '<gv')
+vmap('>', '>gv')
+
+vim.keymap.set('n', '<leader>cd', '<CMD>cd %:p:h<CR><CMD>pwd<CR>', { desc = '[C]hange working [D]irectory to current file parent' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
