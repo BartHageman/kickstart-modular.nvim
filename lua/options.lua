@@ -64,8 +64,6 @@ vim.opt.termguicolors = true
 
 vim.opt.foldmethod = 'expr' -- folding, set to "expr" for treesitter based folding
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()' -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
 
 if vim.g.neovide then
   local isWindows = vim.loop.os_uname().version:match 'Windows'
