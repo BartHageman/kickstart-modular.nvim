@@ -37,6 +37,45 @@ return {
     },
     config = function()
       -- See `:help cmp`
+      vim.g.kind_icons = {
+        Text = '󰉿',
+        Class = '󰠱',
+        Color = '󰏘',
+        Constant = '󰐀 ',
+        Constructor = '',
+        Enum = '',
+        EnumMember = '',
+        Event = '',
+        Field = '󰜢',
+        File = '󰈙',
+        Folder = ' ',
+        Function = '󰊕 ',
+        Interface = '',
+        Keyword = '󰌋',
+        Method = '󰆧',
+        Module = ' ',
+        Operator = '󰆕',
+        Property = '󰜢',
+        Reference = '󰈇',
+        Snippet = ' ',
+        Struct = '󰙅',
+        TypeParameter = '',
+        Unit = '󰑭',
+        Value = '󰎠',
+        Variable = '󰀫',
+      }
+      vim.g.source_names = {
+        nvim_lsp = 'LSP',
+        emoji = 'Emoji',
+        path = 'Path',
+        calc = 'Calc',
+        vsnip = 'Snippet',
+        luasnip = 'Snippet',
+        buffer = 'Buffer',
+        nvim_lua = 'Lua',
+        treesitter = 'Treesitter',
+        crates = 'Crates',
+      }
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
@@ -48,6 +87,18 @@ return {
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
+        experimental = {
+          ghost_text = true,
+        },
+        formatting = {
+          expandable_indicator = true,
+          fields = { 'kind', 'abbr', 'menu' },
+          format = function(entry, vim_item)
+            vim_item.kind = vim.g.kind_icons[vim_item.kind]
+            vim_item.menu = vim.g.source_names[entry.source.name]
+            return vim_item
+          end,
+        },
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
