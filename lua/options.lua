@@ -7,7 +7,7 @@
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -58,5 +58,29 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+vim.opt.laststatus = 3
+
+vim.opt.termguicolors = true
+
+vim.opt.foldmethod = 'expr' -- folding, set to "expr" for treesitter based folding
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()' -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+if vim.g.neovide then
+  local isWindows = vim.loop.os_uname().version:match 'Windows'
+  if isWindows then
+    vim.g.neovide_refresh_rate = 160
+  else
+    vim.g.neovide_refresh_rate = 60
+  end
+  vim.g.neovide_cursor_trail_length = 0.001
+  vim.g.neovide_cursor_animation_length = 0.023
+  vim.g.neovide_input_use_logo = true
+  vim.g.neovide_floating_blur_amount_x = 5.0
+  vim.g.neovide_floating_blur_amount_y = 5.0
+  vim.g.neovide_remember_window_size = false
+  vim.opt.guifont = 'Iosevka Nerd Font:h14'
+end
 
 -- vim: ts=2 sts=2 sw=2 et
