@@ -65,6 +65,18 @@ vim.opt.termguicolors = true
 vim.opt.foldmethod = 'expr' -- folding, set to "expr" for treesitter based folding
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()' -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
 
+if vim.fn.has 'win32' then
+  vim.cmd [[
+ let &shell='"C:\Program Files\Git\bin\bash.exe"'
+ let &shellcmdflag = '-c'
+ let &shellredir = '>%s 2>&1'
+ set shellquote= shellxescape=
+ " set noshelltemp
+ set shellxquote=
+ let &shellpipe='2>&1| tee'
+ ]]
+end
+
 if vim.g.neovide then
   local isWindows = vim.loop.os_uname().version:match 'Windows'
   if isWindows then
