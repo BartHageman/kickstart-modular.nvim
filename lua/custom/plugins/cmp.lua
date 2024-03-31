@@ -80,11 +80,29 @@ return {
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
+      local border = {
+        { '╭', 'CmpBorder' },
+        { '─', 'CmpBorder' },
+        { '╮', 'CmpBorder' },
+        { '│', 'CmpBorder' },
+        { '╯', 'CmpBorder' },
+        { '─', 'CmpBorder' },
+        { '╰', 'CmpBorder' },
+        { '│', 'CmpBorder' },
+      }
       cmp.setup {
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
+        },
+        window = {
+          documentation = {
+            border = border,
+          },
+          completion = {
+            border = border,
+          },
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
         experimental = {
