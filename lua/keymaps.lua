@@ -2,8 +2,6 @@
 --  See `:help vim.keymap.set()`
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
---
---
 local function nmap(lhs, rhs, opt)
   opt = opt or {}
   vim.keymap.set('n', lhs, rhs, opt)
@@ -26,7 +24,6 @@ end
 
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
 -- Easily void things you're visually pasting over
 xmap('<leader>p', '"_dP', {})
 -- Keep screen centered when moving around
@@ -34,10 +31,10 @@ nmap('n', 'nzzzv', {})
 nmap('N', 'Nzzzv', {})
 nmap('J', 'mzJ`z', {})
 -- Add aditional undo moments for punctuation marks
-imap(",", ",<c-g>u")
-imap("?", "?<c-g>u")
-imap("!", "!<c-g>u")
-imap(".", ".<c-g>u")
+imap(',', ',<c-g>u')
+imap('?', '?<c-g>u')
+imap('!', '!<c-g>u')
+imap('.', '.<c-g>u')
 
 -- Move things around easily by holding alt
 -- vmap('<M-j>', ":m '>+1<CR>gv=gv")
@@ -50,12 +47,17 @@ imap(".", ".<c-g>u")
 -- Make visual indentation not stupid
 vmap('<', '<gv')
 vmap('>', '>gv')
+-- Quickfix list
+nmap('[q', '<cmd>cp<cr>', {desc="Previous [Q]uickfix list item"})
+nmap(']q', '<cmd>cn<cr>', {desc="Next [Q]uickfix list item"})
+nmap('<leader>co', ':copen<cr>')
+nmap('<leader>cc', ':copen<cr>')
 
 vim.keymap.set('n', '<leader>cd', '<CMD>cd %:p:h<CR><CMD>pwd<CR>', { desc = '[C]hange working [D]irectory to current file parent' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
