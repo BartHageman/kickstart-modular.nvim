@@ -89,7 +89,7 @@ if vim.g.neovide then
   vim.g.neovide_input_use_logo = true
   vim.g.neovide_floating_blur_amount_x = 5.0
   vim.g.neovide_floating_blur_amount_y = 5.0
-  vim.g.neovide_remember_window_size = false
+  vim.g.neovide_remember_window_size = true
   vim.opt.guifont = 'Iosevka Nerd Font:h14'
 end
 
