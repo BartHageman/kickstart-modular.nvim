@@ -191,10 +191,26 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      local border = {
+        { '╭', 'FloatBorder' },
+        { '─', 'FloatBorder' },
+        { '╮', 'FloatBorder' },
+        { '│', 'FloatBorder' },
+        { '╯', 'FloatBorder' },
+        { '─', 'FloatBorder' },
+        { '╰', 'FloatBorder' },
+        { '│', 'FloatBorder' },
+      }
+      local handlers = {
+        ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+        ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+      }
+
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
+            server.handlers = vim.tbl_deep_extend('force', handlers, server.handlers or {})
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
