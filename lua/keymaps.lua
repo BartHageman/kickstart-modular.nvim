@@ -33,6 +33,11 @@ xmap('<leader>p', '"_dP', {})
 nmap('n', 'nzzzv', {})
 nmap('N', 'Nzzzv', {})
 nmap('J', 'mzJ`z', {})
+-- Add aditional undo moments for punctuation marks
+imap(",", ",<c-g>u")
+imap("?", "?<c-g>u")
+imap("!", "!<c-g>u")
+imap(".", ".<c-g>u")
 
 -- Move things around easily by holding alt
 -- vmap('<M-j>', ":m '>+1<CR>gv=gv")
