@@ -29,6 +29,9 @@ xmap('<leader>p', '"_dP', {})
 -- Keep screen centered when moving around
 nmap('n', 'nzzzv', {})
 nmap('N', 'Nzzzv', {})
+nmap('<C-d>', '<C-d>zz', {})
+nmap('<C-u>', '<C-u>zz', {})
+nmap('N', 'Nzzzv', {})
 nmap('J', 'mzJ`z', {})
 -- Add aditional undo moments for punctuation marks
 imap(',', ',<c-g>u')
