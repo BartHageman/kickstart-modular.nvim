@@ -5,6 +5,7 @@
 
 -- Make line numbers default
 vim.opt.number = true
+vim.opt.swapfile = false
 
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
@@ -12,6 +13,9 @@ vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.expandtab = true
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -78,8 +82,8 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()' -- set to "nvim_treesitter#folde
 --  ]]
 -- end
 
+local isWindows = vim.loop.os_uname().version:match 'Windows'
 if vim.g.neovide then
-  local isWindows = vim.loop.os_uname().version:match 'Windows'
   if isWindows then
     vim.g.neovide_refresh_rate = 160
   else
@@ -92,6 +96,19 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_y = 5.0
   vim.g.neovide_remember_window_size = true
   vim.opt.guifont = 'Iosevka Nerd Font:h14'
+end
+
+if isWindows then
+  vim.opt.shellslash = true
+  vim.cmd [[
+   let &shell='"C:\Program Files\Git\bin\bash.exe"'
+   let &shellcmdflag = '-c'
+   let &shellredir = '>%s 2>&1'
+   set shellquote= shellxescape=
+   " set noshelltemp
+   set shellxquote=
+   let &shellpipe='2>&1| tee'
+ ]]
 end
 
 -- vim: ts=2 sts=2 sw=2 et
