@@ -27,8 +27,12 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Easily void things you're visually pasting over
 xmap('<leader>p', '"_dP', {})
 -- Keep screen centered when moving around
-nmap('n', 'nzzzv', {})
-nmap('N', 'Nzzzv', {})
+nmap('n', 'nzz', {})
+nmap('N', 'Nzz', {})
+nmap('<C-d>', '<C-d>zz', {})
+nmap('<C-u>', '<C-u>zz', {})
+nmap('N', 'Nzz', {})
+
 nmap('J', 'mzJ`z', {})
 -- Add aditional undo moments for punctuation marks
 imap(',', ',<c-g>u')
