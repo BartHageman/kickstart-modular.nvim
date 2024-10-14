@@ -62,7 +62,9 @@ return {
     config = function(_, opts)
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
-      require('nvim-treesitter.install').compilers = { 'cl', 'gcc' }
+      require('nvim-treesitter.install').compilers = { 'clang', 'gcc' }
+      require('nvim-treesitter.install').prefer_git = false
+
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
       -- There are additional nvim-treesitter modules that you can use to interact
